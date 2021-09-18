@@ -5,9 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "wp --mode production",
-		"watch": "nodemon --watch webpack.* --exec npm start",
-		"start": "wp --mode development"
+		"build": "wp --config webpack/webpack.production.js --mode production",
+		"watch": "nodemon --watch webpack/**/*.js --exec npm start",
+		"start": "wp --config webpack/webpack.development.js --mode=development"
 	},
 	"keywords": [],
 	"author": "",

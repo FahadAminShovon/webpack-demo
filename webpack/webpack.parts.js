@@ -6,7 +6,7 @@ exports.devServer = () => ({
 	plugins: [
 		new WebpackPluginServe({
 			host: '127.0.0.1',
-			port: process.env.PORT || 8080,
+			port: process.env.port || 8080,
 			static: './dist',
 			liveReload: true,
 			waitForBuild: true,
