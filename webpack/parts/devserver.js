@@ -1,7 +1,5 @@
 const { WebpackPluginServe } = require('webpack-plugin-serve');
-const { MiniHtmlWebpackPlugin } = require('mini-html-webpack-plugin');
-
-exports.devServer = () => ({
+module.exports = () => ({
 	watch: true,
 	plugins: [
 		new WebpackPluginServe({
@@ -12,8 +10,4 @@ exports.devServer = () => ({
 			waitForBuild: true,
 		}),
 	],
-});
-
-exports.page = ({ title }) => ({
-	plugins: [new MiniHtmlWebpackPlugin({ context: { title } })],
 });

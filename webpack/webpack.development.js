@@ -1,6 +1,6 @@
 const { merge } = require('webpack-merge');
 const { common } = require('./webpack.common');
-const { devServer } = require('./webpack.parts');
+const { devServer } = require('./parts');
 
 const developmentConfig = merge([
 	{
