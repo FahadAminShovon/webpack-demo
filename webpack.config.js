@@ -5,10 +5,10 @@ const parts = require('./webpack.parts');
 const commonConfig = merge([
   { entry: ['./src'] },
   parts.page({ title: 'Demo' }),
-  parts.extractCSS({ loaders: [parts.tailwind()] }),
+  parts.extractCSS({ loaders: [parts.autoPrefix(), parts.tailwind()] }),
 ]);
 
-const productionConfig = merge([parts.eleminateUnusedCSS()]);
+const productionConfig = merge([parts.eliminateUnusedCSS()]);
 
 const developmentConfig = merge([
   { entry: ['webpack-plugin-serve/client'] },

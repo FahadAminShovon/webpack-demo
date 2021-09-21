@@ -70,7 +70,16 @@ exports.tailwind = () => ({
   },
 });
 
-exports.eleminateUnusedCSS = () => ({
+exports.autoPrefix = () => ({
+  loader: 'postcss-loader',
+  options: {
+    postcssOptions: {
+      plugins: [require('autoprefixer')],
+    },
+  },
+});
+
+exports.eliminateUnusedCSS = () => ({
   plugins: [
     new PurgeCSSPlugin({
       paths: ALL_FILES,
