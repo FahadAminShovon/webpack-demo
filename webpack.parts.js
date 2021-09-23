@@ -93,3 +93,15 @@ exports.eliminateUnusedCSS = () => ({
     }),
   ],
 });
+
+exports.loadImages = ({ limit } = {}) => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpeg|svg|jpg)$/,
+        type: 'asset',
+        parser: { dataUrlCondition: { maxSize: limit } },
+      },
+    ],
+  },
+});
