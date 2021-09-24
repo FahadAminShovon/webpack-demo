@@ -1,9 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200&display=swap');
 body {
   background: cornsilk;
   background-image: url('./logo.png');
   background-repeat: no-repeat;
   background-position: center;
+  font-family: 'Gemunu Libre', sans-serif;
 }
