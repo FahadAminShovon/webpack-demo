@@ -1,11 +1,22 @@
 const { WebpackPluginServe } = require('webpack-plugin-serve');
 const { MiniHtmlWebpackPlugin } = require('mini-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const path = require('path');
 const glob = require('glob');
 const PurgeCSSPlugin = require('purgecss-webpack-plugin');
 
-const ALL_FILES = glob.sync(path.join(__dirname, 'src/*.js'));
+const ALL_JS_FILES = glob.sync(path.join(__dirname, 'src/*.js'));
+const ALL_JSX_FILES = glob.sync(path.join(__dirname, 'src/*.jsx'));
+const ALL_TS_FILES = glob.sync(path.join(__dirname, 'src/*.ts'));
+const ALL_TSX_FILES = glob.sync(path.join(__dirname, 'src/*.tsx'));
+const ALL_FILES = [
+  ...ALL_JS_FILES,
+  ...ALL_JSX_FILES,
+  ...ALL_TSX_FILES,
+  ...ALL_TS_FILES,
+];
+const APP_SOURCE = path.join(__dirname, 'src');
 
 exports.devServer = () => ({
   watch: true,
@@ -34,7 +45,7 @@ exports.loadCSS = () => ({
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
             },
           },
         ],
@@ -114,5 +125,36 @@ exports.loadFont = () => ({
         type: 'asset/resource',
       },
     ],
+  },
+});
+
+exports.loadJavaScript = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: APP_SOURCE,
+        use: [{ loader: 'babel-loader' }],
+      },
+    ],
+  },
+});
+
+exports.loadTypeScript = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(tsx|ts)?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
 });
