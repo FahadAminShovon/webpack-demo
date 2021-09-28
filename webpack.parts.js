@@ -158,3 +158,5 @@ exports.loadTypeScript = () => ({
     path: path.resolve(__dirname, 'dist'),
   },
 });
+
+exports.generateSourceMaps = ({ type }) => ({ devtool: type });
