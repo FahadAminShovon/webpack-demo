@@ -9,6 +9,11 @@ const commonConfig = merge([
   parts.extractCSS({ loaders: [parts.autoPrefix(), parts.tailwind()] }),
   parts.loadImages({ limit: 1500 }),
   parts.loadFont(),
+  {
+    output: {
+      chunkFilename: 'chunk.[id].js',
+    },
+  },
 ]);
 
 const productionConfig = merge([
