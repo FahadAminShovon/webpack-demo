@@ -15,6 +15,7 @@ const commonConfig = merge([
       chunkFilename: 'chunk.[id].js',
     },
   },
+  parts.clean(),
 ]);
 
 const productionConfig = merge([
@@ -30,6 +31,7 @@ const productionConfig = merge([
       vendor: ['react', 'react-dom'],
     },
   },
+  parts.attachRevision(),
 ]);
 
 const developmentConfig = merge([
