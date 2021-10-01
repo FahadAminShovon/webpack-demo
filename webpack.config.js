@@ -1,6 +1,7 @@
 const { mode } = require('webpack-nano/argv');
 const { merge } = require('webpack-merge');
 const parts = require('./webpack.parts');
+const path = require('path');
 
 const commonConfig = merge([
   { entry: ['./src'] },
@@ -20,6 +21,15 @@ const productionConfig = merge([
   parts.eliminateUnusedCSS(),
   parts.loadJavaScript(),
   parts.generateSourceMaps({ type: 'source-map' }),
+  {
+    entry: {
+      app: {
+        import: path.join(__dirname, 'src', 'index.ts'),
+        dependOn: 'vendor',
+      },
+      vendor: ['react', 'react-dom'],
+    },
+  },
 ]);
 
 const developmentConfig = merge([
